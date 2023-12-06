@@ -1,13 +1,24 @@
 package org.example.Observer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Bulldozer implements ConstructionEquipmentSubject {
     private final List<ConstructionEquipmentObserver> observers = new ArrayList<>();
+    private final List<String> stateHistory = new ArrayList<>();
 
     public void setStatus(String status) {
         notifyObservers(status);
+        saveStateToHistory(status);
+    }
+
+    private void saveStateToHistory(String status) {
+        stateHistory.add(status);
+    }
+
+    public List<String> getStateHistory() {
+        return Collections.unmodifiableList(stateHistory);
     }
 
     @Override

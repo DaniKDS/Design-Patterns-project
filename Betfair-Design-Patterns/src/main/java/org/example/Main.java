@@ -11,16 +11,34 @@ import org.example.Prototype.ConstructionEquipmentClient;
 import org.example.Prototype.ConstructionEquipmentPrototype;
 import org.example.Proxy.*;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
         // Observer pattern
+
         Bulldozer bulldozer = new Bulldozer();
         EquipmentMonitor monitor = new EquipmentMonitor();
+
+        // Register the EquipmentMonitor as an observer for the Bulldozer
         bulldozer.registerObserver(monitor);
 
+        // Set the Bulldozer status, which will notify the registered observer
         bulldozer.setStatus("Working");
+
+        // Access state history
+        List<String> stateHistory = bulldozer.getStateHistory();
+        System.out.println("Bulldozer State History: " + stateHistory);
+
+        // Set the Bulldozer status again, triggering another notification
         bulldozer.setStatus("Idle");
+
+        // Set notification threshold for the monitor
+        monitor.setNotificationThreshold("Idle");
+
+        // Set the Bulldozer status again, triggering a detailed notification
+        bulldozer.setStatus("Maintenance");
 
         // Prototype pattern
 
@@ -48,6 +66,7 @@ public class Main {
         // Display remaining prototypes
         client.displayAllPrototypes();
 
+        // Proxy pattern
         // Utilizarea Proxy pentru a obține informații despre bulldozer
         AuthorizedConstructionEquipmentInfo adminBulldozerInfoProxy = new EnhancedBulldozerInfoProxy();
         adminBulldozerInfoProxy.setAuthorizedUser("admin");
