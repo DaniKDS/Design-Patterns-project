@@ -29,9 +29,24 @@ public class Main {
 
         client.addPrototype("Bulldozer1", bulldozerPrototype);
 
-        // Clonarea unui prototip pentru a crea un nou bulldozer
+        // Display all prototypes
+        client.displayAllPrototypes();
+
+        // Clone a prototype to create a new bulldozer
         ConstructionEquipmentPrototype newBulldozer = client.getClone("Bulldozer1");
-        System.out.println(newBulldozer);
+        System.out.println("Cloned Bulldozer:");
+        newBulldozer.printDetails();
+
+        // Modify the cloned bulldozer
+        ((BulldozerPrototype) newBulldozer).setModel("Model-Y");
+        ((BulldozerPrototype) newBulldozer).setCapacity("600 HP");
+        System.out.println("Modified Cloned Bulldozer:");
+        newBulldozer.printDetails();
+
+        // Remove a prototype
+        client.removePrototype("Bulldozer1");
+        // Display remaining prototypes
+        client.displayAllPrototypes();
 
         // Utilizarea Proxy pentru a obține informații despre bulldozer
         AuthorizedConstructionEquipmentInfo adminBulldozerInfoProxy = new EnhancedBulldozerInfoProxy();

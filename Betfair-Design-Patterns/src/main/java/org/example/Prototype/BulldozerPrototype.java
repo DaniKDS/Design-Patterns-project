@@ -23,7 +23,17 @@ public class BulldozerPrototype implements ConstructionEquipmentPrototype {
     }
 
     @Override
-    public String toString() {
-        return "Bulldozer - Model: " + model + ", Capacity: " + capacity;
+    public String getModel() {
+        return model;
+    }
+
+    @Override
+    public String getCapacity() {
+        return capacity;
+    }
+
+    @Override
+    public void printDetails() {
+        System.out.println("Bulldozer - Model: " + model + ", Capacity: " + capacity);
     }
 }

@@ -1,7 +1,11 @@
 package org.example.Prototype;
 
+//
 public interface ConstructionEquipmentPrototype {
-    ConstructionEquipmentPrototype clone();
-    // Metoda pentru clonarea obiectelor
 
+    //Metoda de clonare
+    ConstructionEquipmentPrototype clone();
+    String getModel();
+    String getCapacity();
+    void printDetails();
 }

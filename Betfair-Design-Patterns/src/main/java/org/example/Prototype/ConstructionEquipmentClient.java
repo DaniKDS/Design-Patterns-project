@@ -13,4 +13,18 @@ public class ConstructionEquipmentClient {
     public ConstructionEquipmentPrototype getClone(String key) {
         return prototypeMap.get(key).clone();
     }
+
+    // Display details of all prototypes
+    public void displayAllPrototypes() {
+        System.out.println("All Construction Equipment Prototypes:");
+        for (Map.Entry<String, ConstructionEquipmentPrototype> entry : prototypeMap.entrySet()) {
+            System.out.println(entry.getKey() + ": ");
+            entry.getValue().printDetails();
+        }
+    }
+
+    // Remove a prototype from the map
+    public void removePrototype(String key) {
+        prototypeMap.remove(key);
+    }
 }
