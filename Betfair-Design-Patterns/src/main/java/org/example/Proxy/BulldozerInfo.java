@@ -1,4 +1,6 @@
 package org.example.Proxy;
+
+// Real Subject BulldozerInfo
 class BulldozerInfo implements ConstructionEquipmentInfo {
     private final String model;
     private final String capacity;

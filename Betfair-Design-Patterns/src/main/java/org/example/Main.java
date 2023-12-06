@@ -9,8 +9,7 @@ import org.example.Observer.EquipmentMonitor;
 import org.example.Prototype.BulldozerPrototype;
 import org.example.Prototype.ConstructionEquipmentClient;
 import org.example.Prototype.ConstructionEquipmentPrototype;
-import org.example.Proxy.BulldozerInfoProxy;
-import org.example.Proxy.ConstructionEquipmentInfo;
+import org.example.Proxy.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -35,11 +34,18 @@ public class Main {
         System.out.println(newBulldozer);
 
         // Utilizarea Proxy pentru a obține informații despre bulldozer
-        ConstructionEquipmentInfo bulldozerInfoProxy = new BulldozerInfoProxy("admin");
-        System.out.println(bulldozerInfoProxy.getEquipmentInfo());
+        AuthorizedConstructionEquipmentInfo adminBulldozerInfoProxy = new EnhancedBulldozerInfoProxy();
+        adminBulldozerInfoProxy.setAuthorizedUser("admin");
+        System.out.println(adminBulldozerInfoProxy.getEquipmentInfo());
 
-        ConstructionEquipmentInfo unauthorizedUserProxy = new BulldozerInfoProxy("user");
-        System.out.println(unauthorizedUserProxy.getEquipmentInfo());
+        AuthorizedConstructionEquipmentInfo userBulldozerInfoProxy = new EnhancedBulldozerInfoProxy();
+        userBulldozerInfoProxy.setAuthorizedUser("user");
+        System.out.println(userBulldozerInfoProxy.getEquipmentInfo());
+
+        // Utilizare serviciu de gestionare a utilizatorilor pentru verificarea autorizației
+        UserService userService = new UserService();
+        boolean isAdmin = userService.checkAuthorization("admin", "admin");
+        System.out.println("Is admin? " + isAdmin);
 
         // Utilizarea Command pentru a programa și executa comenzi
         ConstructionEquipment excavator = new ConstructionEquipment("Excavator");
